@@ -39,8 +39,8 @@ public class Testing : MonoBehaviour
         infoButton.onClick.AddListener(() => SendMessageToJS("lectureInfo"));
         startButton.onClick.AddListener(() => SendMessageToJS("lectureStart"));
         endButton.onClick.AddListener(() => SendMessageToJS("lectureEnd"));
-        //quizEndButton.onClick.AddListener(() => SendMessageToJS("lectureQuizEnd"));
-        quizEndButton.onClick.AddListener(ChangeToL1);
+        quizEndButton.onClick.AddListener(() => SendMessageToJS("lectureQuizEnd"));
+        //quizEndButton.onClick.AddListener(ChangeToL1);
 
         Hello();
 

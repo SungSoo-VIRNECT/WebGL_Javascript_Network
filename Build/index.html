@@ -36,17 +36,20 @@
       function SendMessageToJS(message) {
         switch (message) {
           case 'lectureInfo':
-            console.log("lecture Info");
+            changeText("Info");
+            console.log("lectureInfo");
             break;
           case 'lectureStart':
-            changeText();
+            changeText("L1");
             console.log("lectureStart");
             break;
           case 'lectureEnd':
             console.log("lectureEnd ");
+            changeText("L2");
             break;
           case 'lectureQuizEnd':
-            console.log("lectureQuizEnd ");
+            console.log("lectureQuizEnd");
+            changeText("L3");
             break;
           default:
             console.log("Unknown message: " + message);
@@ -130,8 +133,8 @@
 
       loadingBar.style.display = "block";
 
-      function changeText() {
-        document.getElementById("status").textContent = "L1";
+      function changeText(number) {
+        document.getElementById("status").textContent = number;
       }
 
       var script = document.createElement("script");
