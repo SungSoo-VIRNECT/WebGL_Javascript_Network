@@ -34,7 +34,8 @@ mergeInto(LibraryManager.library, {
   },
   
   SendMessageToJS: function(message) {
-  window.SendMessage(message);
+    window.SendMessageToJS(UTF8ToString(message));    
+    console.log("sent");
   },
 
 });

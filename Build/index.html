@@ -33,25 +33,26 @@
     <script>
       //window.virnectWasmPort = new VirnectWasmPort();
 
-      // function SendMessage(message) {
-      //     switch(message) {
-      //     case 'lectureInfo': {
-      //       // http request
-      //       console.log("lecture Info");
-      //     }
-      //     case 'lectureStart':{
-      //       changeText();
-      //       console.log("lectureStart");
-      //     }
-      //     case 'lectureEnd':{
-      //       console.log("lectureEnd ");
-      //     }
-      //     case 'lectureQuizEnd':{
-      //       console.log("lectureQuizEnd ");
-      //     }
-
-      //   }
-      //   };
+      function SendMessageToJS(message) {
+        switch (message) {
+          case 'lectureInfo':
+            console.log("lecture Info");
+            break;
+          case 'lectureStart':
+            changeText();
+            console.log("lectureStart");
+            break;
+          case 'lectureEnd':
+            console.log("lectureEnd ");
+            break;
+          case 'lectureQuizEnd':
+            console.log("lectureQuizEnd ");
+            break;
+          default:
+            console.log("Unknown message: " + message);
+            break;
+        }
+      };
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
