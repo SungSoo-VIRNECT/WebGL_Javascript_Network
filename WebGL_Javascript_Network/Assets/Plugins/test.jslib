@@ -29,13 +29,8 @@ mergeInto(LibraryManager.library, {
     GLctx.bindTexture(GLctx.TEXTURE_2D, GL.textures[texture]);
   },
 
-  ChangeToL1: function () {
-    changeText();
-  },
-  
   SendMessageToJS: function(message) {
-    window.SendMessageToJS(UTF8ToString(message));    
+    SendMessageToJS(UTF8ToString(message));    
     console.log("sent");
   },
-
 });

@@ -29,9 +29,6 @@ public class Testing : MonoBehaviour
     private static extern string StringReturnValueFunction();
 
     [DllImport("__Internal")]
-    private static extern void ChangeToL1();
-
-    [DllImport("__Internal")]
     private static extern void SendMessageToJS(string s);
 
     void Start()
@@ -40,8 +37,7 @@ public class Testing : MonoBehaviour
         startButton.onClick.AddListener(() => SendMessageToJS("lectureStart"));
         endButton.onClick.AddListener(() => SendMessageToJS("lectureEnd"));
         quizEndButton.onClick.AddListener(() => SendMessageToJS("lectureQuizEnd"));
-        //quizEndButton.onClick.AddListener(ChangeToL1);
-
+/*
         Hello();
 
         HelloString("This is a string.");
@@ -52,9 +48,7 @@ public class Testing : MonoBehaviour
         int result = AddNumbers(5, 7);
         Debug.Log(result);
 
-        Debug.Log(StringReturnValueFunction());
-
-
+        Debug.Log(StringReturnValueFunction());*/
     }
 
 }

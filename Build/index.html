@@ -4,17 +4,45 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | WebGL_Javascript_Network</title>
+    <style>
+      #currentcode {
+        font-size: 20px;
+      }
+      #codetext{
+        font-size : 30px;
+      }
+      #currentstatus {
+        font-size: 20px;
+      }
+      #statustext{
+        font-size : 30px;
+      }
+      
+    </style>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
-  <body>
-    <div id="status">L0</div>
-    
-    <!-- <script>
-      function changeText() {
-        document.getElementById("status").textContent = "L1";
-      }
-    </script> -->
+  <body>    
+    <div id="codetext">Current Code</div>
+    <div id="currentcode">L0</div>
+    <div id="statustext">강의 상태</div>
+    <div id="currentstatus">학습 전</div>
+    <div><h1>UserInfo</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id = "userID">12345</td>
+            <td id = "username">John Smith</td>
+          </tr>
+        </tbody>
+      </table></div>
+
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=960 height=600></canvas>
       <div id="unity-loading-bar">
@@ -31,31 +59,43 @@
       </div>
     </div>
     <script>
-      //window.virnectWasmPort = new VirnectWasmPort();
-
       function SendMessageToJS(message) {
         switch (message) {
           case 'lectureInfo':
-            changeText("Info");
+            changeUserInfo("00729", "뿌직")
             console.log("lectureInfo");
+            //정보 (사용자ID 및 언어종류) 앞으로 여기에 시작시 정보가 필요하면 넣어드림
             break;
           case 'lectureStart':
-            changeText("L1");
+          changeCode("L1");
+          changeStatus("학습 중");
             console.log("lectureStart");
+            //강의 상태 진행중으로 변경
+            //L0->L1 학습중으로 변경됨
+            //학습 완료(L2) 인 수강생이 재수강을 할 경우에는 변경되지 않도록, L0일때만 L1으로 변경되어야 합니다.
             break;
           case 'lectureEnd':
             console.log("lectureEnd ");
-            changeText("L2");
+            changeCode("L2");
+            changeStatus("학습 완료");
+            // 학습완료로 변경
+            // L1->L2 학습완료로 변경됨
+            // (퀴즈포함인 경우에는 L2로 변경되도 학습완료료 보여지지 않음)
+            // 학습 완료(L2)나 학습 종료(L9) 인 수강생이 재수강을 할 경우에는 변경되지 않도록, L1 일 때만 L2 으로 변경되어야 합니다
             break;
           case 'lectureQuizEnd':
             console.log("lectureQuizEnd");
-            changeText("L3");
+            changeCode("C1");
+            changeStatus("수료");
+            //퀴즈완료후 상태 변경(수료로 변경)  퀴즈를 다풀었을때 발생
+            //
             break;
           default:
             console.log("Unknown message: " + message);
             break;
         }
       };
+
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
@@ -128,13 +168,22 @@
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
         canvas.style.width = "960px";
-        canvas.style.height = "600px";
+        canvas.style.height = "540px";
       }
 
       loadingBar.style.display = "block";
 
-      function changeText(number) {
-        document.getElementById("status").textContent = number;
+      function changeCode(code) {
+        document.getElementById("currentcode").textContent = code;
+      }
+
+      function changeStatus(status) {
+        document.getElementById("currentstatus").textContent = status;
+      }
+
+      function changeUserInfo(id, name) {
+        document.getElementById("userID").textContent = id;
+        document.getElementById("username").textContent = name;
       }
 
       var script = document.createElement("script");
