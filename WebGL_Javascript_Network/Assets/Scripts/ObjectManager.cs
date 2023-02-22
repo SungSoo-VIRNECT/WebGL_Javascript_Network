@@ -7,11 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class ObjectManager : MonoBehaviour
 {
+
     public Button startButton;
     public Button endButton;
     public Button quizEndButton;
     public GameObject leftModel;
     public GameObject rightModel;
+    
     void Start()
     {
         startButton.onClick.AddListener(StartScene);
@@ -47,5 +49,4 @@ public class ObjectManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 }
